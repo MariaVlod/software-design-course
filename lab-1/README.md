@@ -1,7 +1,7 @@
 # Programming Principles in the Project
 This file provides an overview of how different programming principles are used in the project. The principles include SOLID, DRY, KISS, YAGNI, and Composition Over Inheritance.
 ## 1. DRY (Don't Repeat Yourself
-- The Money class [see lines 19-46](https://github.com/MariaVlod/software-design-course/blob/main/lab-1/WarehouseLibrary/Money.cs#L19-L46) encapsulates the logic for handling money values and normalization (lines 9-21).
+- The Money class [see lines 19-46](https://github.com/MariaVlod/software-design-course/blob/main/lab-1/WarehouseLibrary/Money.cs#L19-L46) encapsulates the logic for handling money values and normalization.
 - The Display() method is used to print the values of Money objects [see lines 48-51](https://github.com/MariaVlod/software-design-course/blob/main/lab-1/WarehouseLibrary/Money.cs#L48-L51) avoiding code duplication across the project.
 
 ## 2. KISS (Keep It Simple, Stupid)
