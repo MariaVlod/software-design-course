@@ -6,15 +6,6 @@ using System.Threading.Tasks;
 
 namespace WarehouseLibrary
 {
-    public class USD : Money
-    {
-        public USD(int dollars, int cents) : base(dollars, cents) { }
-    }
-
-    public class EUR : Money
-    {
-        public EUR(int euros, int cents) : base(euros, cents) { }
-    }
 
     public class Money
     {
