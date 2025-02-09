@@ -1,8 +1,8 @@
 # Programming Principles in the Project
 This file provides an overview of how different programming principles are used in the project. The principles include SOLID, DRY, KISS, YAGNI, and Composition Over Inheritance.
 ## 1. DRY (Don't Repeat Yourself
-- The Money class [see lines 19-46](https://github.com/MariaVlod/software-design-course/blob/main/lab-1/WarehouseLibrary/Money.cs#L19-L46) encapsulates the logic for handling money values and normalization.
-- The Display() method is used to print the values of Money objects [see lines 48-51](https://github.com/MariaVlod/software-design-course/blob/main/lab-1/WarehouseLibrary/Money.cs#L48-L51) avoiding code duplication across the project.
+- The Money class [see lines 10-37](https://github.com/MariaVlod/software-design-course/blob/main/lab-1/WarehouseLibrary/Money.cs#L10-L37) encapsulates the logic for handling money values and normalization.
+- The Display() method is used to print the values of Money objects [see lines 39-42](https://github.com/MariaVlod/software-design-course/blob/main/lab-1/WarehouseLibrary/Money.cs#L39-L42) avoiding code duplication across the project.
 
 ## 2. KISS (Keep It Simple, Stupid)
 The code structure is straightforward and easy to understand:
@@ -24,10 +24,10 @@ Each class is responsible for a single function:
 
 The [Money](./WarehouseLibrary/Money.cs) class is open for extension but closed for modification:
 
-- It allows new currencies to be introduced via inheritance (USD, EUR classes) without modifying the base class [see lines 9-17](https://github.com/MariaVlod/software-design-course/blob/main/lab-1/WarehouseLibrary/Money.cs#L9-L17).
+- It allows new currencies to be introduced via inheritance (USD, EUR classes) [USD](./WarehouseLibrary/USD.cs) [EUR](./WarehouseLibrary/EUR.cs) without modifying the base class .
 ### 3.3 Liskov Substitution Principle (LSP)
 
-- USD and EUR classes ([see lines 9-17](https://github.com/MariaVlod/software-design-course/blob/main/lab-1/WarehouseLibrary/Money.cs#L9-L17)) extend Money and can be used interchangeably with Money objects without breaking the program.
+- USD and EUR classes [USD](./WarehouseLibrary/USD.cs) [EUR](./WarehouseLibrary/EUR.cs) extend Money and can be used interchangeably with Money objects without breaking the program.
   ### 3.4 Interface Segregation Principle (ISP)
 
 Project follows ISP by keeping separate classes for different responsibilities instead of one large interface. Example:
