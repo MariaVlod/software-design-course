@@ -8,9 +8,21 @@ namespace Builder
 {
     public class Director
     {
-        public Hero CreateLegolas(HeroBuilder builder)
+        private ICharacterBuilder _builder;
+
+        public Director(ICharacterBuilder builder)
         {
-            return builder
+            _builder = builder;
+        }
+
+        public void ChangeBuilder(ICharacterBuilder builder)
+        {
+            _builder = builder;
+        }
+
+        public object CreateCharacter()
+        {
+            return _builder
                 .SetHeight(180)
                 .SetBuild("Slim")
                 .SetHairColor("Blonde")
@@ -20,15 +32,15 @@ namespace Builder
                 .AddToInventory("Quiver of endless arrows")
                 .AddToInventory("Elven knife with engraved runes")
                 .AddToInventory("Cloak of Lothlórien")
-                .AddGoodDeed("Saved the village of Rohan from an orc invasion")
-                .AddGoodDeed("Protected the Fellowship during their journey to Mordor")
-                .AddGoodDeed("Defeated the Uruk-hai at Helm's Deep")
+                .AddDeed("Saved the village of Rohan from an orc invasion")
+                .AddDeed("Protected the Fellowship during their journey to Mordor")
+                .AddDeed("Defeated the Uruk-hai at Helm's Deep")
                 .Build();
         }
 
-        public Enemy CreateNegan(EnemyBuilder builder)
+        public object CreateEvilCharacter()
         {
-            return builder
+            return _builder
                 .SetHeight(185)
                 .SetBuild("Muscular")
                 .SetHairColor("Black")
@@ -37,9 +49,9 @@ namespace Builder
                 .AddToInventory("Lucille (barbed wire-wrapped baseball bat)")
                 .AddToInventory("Colt Python revolver")
                 .AddToInventory("Knife with a skull handle")
-                .AddEvilDeed("Killed Glenn Rhee in front of his friends")
-                .AddEvilDeed("Enslaved multiple communities under his rule")
-                .AddEvilDeed("Tortured Daryl Dixon to break his spirit")
+                .AddDeed("Killed Glenn Rhee in front of his friends")
+                .AddDeed("Enslaved multiple communities under his rule")
+                .AddDeed("Tortured Daryl Dixon to break his spirit")
                 .Build();
         }
     }

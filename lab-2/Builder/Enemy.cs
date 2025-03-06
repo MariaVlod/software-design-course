@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Builder
 {
-    public class Enemy
+    public class Enemy 
     {
         public int Height { get; set; }
         public string Build { get; set; }
@@ -24,16 +24,8 @@ namespace Builder
             Console.WriteLine($"Hair Color: {HairColor}");
             Console.WriteLine($"Eye Color: {EyeColor}");
             Console.WriteLine($"Clothing: {Clothing}");
-            Console.WriteLine("Inventory:");
-            foreach (var item in Inventory)
-            {
-                Console.WriteLine($"  - {item}");
-            }
-            Console.WriteLine("Evil Deeds:");
-            foreach (var deed in EvilDeeds)
-            {
-                Console.WriteLine($"  - {deed}");
-            }
+            Console.WriteLine("Inventory: " + string.Join(", ", Inventory));
+            Console.WriteLine("Evil Deeds: " + string.Join(", ", EvilDeeds));
         }
     }
 }

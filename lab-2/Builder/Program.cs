@@ -5,17 +5,19 @@ using System;
 class Program
 {
     static void Main(string[] args)
-    {
-        Director director = new Director();
+    {// Створення будівельників
+        var heroBuilder = new HeroBuilder();
+        var enemyBuilder = new EnemyBuilder();
+        var director = new Director(heroBuilder);
 
-        HeroBuilder heroBuilder = new HeroBuilder();
-        Hero legolas = director.CreateLegolas(heroBuilder);
-        legolas.DisplayInfo();
+        var hero = (Hero)director.CreateCharacter();
+        hero.DisplayInfo();
 
         Console.WriteLine("\n-----------------------------\n");
 
-        EnemyBuilder enemyBuilder = new EnemyBuilder();
-        Enemy negan = director.CreateNegan(enemyBuilder);
-        negan.DisplayInfo();
+        director.ChangeBuilder(enemyBuilder);
+
+        var enemy = (Enemy)director.CreateEvilCharacter();
+        enemy.DisplayInfo();
     }
 }

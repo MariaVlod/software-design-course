@@ -6,55 +6,56 @@ using System.Threading.Tasks;
 
 namespace Builder
 {
-    public class HeroBuilder
+    public class HeroBuilder : ICharacterBuilder
     {
         private Hero _hero = new Hero();
 
-        public HeroBuilder SetHeight(int height)
+        public ICharacterBuilder SetHeight(int height)
         {
             _hero.Height = height;
             return this;
         }
 
-        public HeroBuilder SetBuild(string build)
+        public ICharacterBuilder SetBuild(string build)
         {
             _hero.Build = build;
             return this;
         }
 
-        public HeroBuilder SetHairColor(string hairColor)
+        public ICharacterBuilder SetHairColor(string hairColor)
         {
             _hero.HairColor = hairColor;
             return this;
         }
 
-        public HeroBuilder SetEyeColor(string eyeColor)
+        public ICharacterBuilder SetEyeColor(string eyeColor)
         {
             _hero.EyeColor = eyeColor;
             return this;
         }
 
-        public HeroBuilder SetClothing(string clothing)
+        public ICharacterBuilder SetClothing(string clothing)
         {
             _hero.Clothing = clothing;
             return this;
         }
 
-        public HeroBuilder AddToInventory(string item)
+        public ICharacterBuilder AddToInventory(string item)
         {
             _hero.Inventory.Add(item);
             return this;
         }
 
-        public HeroBuilder AddGoodDeed(string deed)
+        public ICharacterBuilder AddDeed(string deed)
         {
             _hero.GoodDeeds.Add(deed);
             return this;
         }
 
-        public Hero Build()
+        public object Build()
         {
             return _hero;
         }
+
     }
 }
