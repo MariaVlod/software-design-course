@@ -1,5 +1,6 @@
 ﻿using Abstract_Factory_Example.Factories;
 using Abstract_Factory_Example.Devices;
+using Abstract_Factory_Example.Client;
 
 class Program
 {
@@ -13,42 +14,20 @@ class Program
 
         
         Console.WriteLine("\nВикористання фабрики IProne:");
-        factory = new IProneFactory();
-        var iproneLaptop = factory.CreateLaptop();
-        var iproneNetbook = factory.CreateNetbook();
-        var iproneEBook = factory.CreateEBook();
-        var iproneSmartphone = factory.CreateSmartphone();
+        Client client1 = new Client(new IProneFactory());
+        client1.Run();
 
-        iproneLaptop.DisplayInfo();
-        iproneNetbook.DisplayInfo();
-        iproneEBook.DisplayInfo();
-        iproneSmartphone.DisplayInfo();
+       
 
        
         Console.WriteLine("\nВикористання фабрики Kiaomi:");
-        factory = new KiaomiFactory();
-        var kiaomiLaptop = factory.CreateLaptop();
-        var kiaomiNetbook = factory.CreateNetbook();
-        var kiaomiEBook = factory.CreateEBook();
-        var kiaomiSmartphone = factory.CreateSmartphone();
+        Client client2 = new Client(new KiaomiFactory());
+        client2.Run();
 
-        kiaomiLaptop.DisplayInfo();
-        kiaomiNetbook.DisplayInfo();
-        kiaomiEBook.DisplayInfo();
-        kiaomiSmartphone.DisplayInfo();
 
-       
         Console.WriteLine("\nВикористання фабрики Balaxy:");
-        factory = new BalaxyFactory();
-        var balaxyLaptop = factory.CreateLaptop();
-        var balaxyNetbook = factory.CreateNetbook();
-        var balaxyEBook = factory.CreateEBook();
-        var balaxySmartphone = factory.CreateSmartphone();
-
-        balaxyLaptop.DisplayInfo();
-        balaxyNetbook.DisplayInfo();
-        balaxyEBook.DisplayInfo();
-        balaxySmartphone.DisplayInfo();
+        Client client3 = new Client(new BalaxyFactory());
+        client3.Run();
 
     }
 }

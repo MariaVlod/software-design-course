@@ -4,20 +4,21 @@ using System;
 
 class Program
 {
-    static void Main(string[] args)
-    {// Створення будівельників
+    static void Main()
+    {
         var heroBuilder = new HeroBuilder();
         var enemyBuilder = new EnemyBuilder();
+
         var director = new Director(heroBuilder);
+        Character hero = director.CreateCharacter();
 
-        var hero = (Hero)director.CreateCharacter();
-        hero.DisplayInfo();
+        director.SetBuilder(enemyBuilder);
+        Character enemy = director.CreateEvilCharacter();
 
-        Console.WriteLine("\n-----------------------------\n");
+        Console.WriteLine("Hero:");
+        hero.ShowInfo();
 
-        director.ChangeBuilder(enemyBuilder);
-
-        var enemy = (Enemy)director.CreateEvilCharacter();
-        enemy.DisplayInfo();
+        Console.WriteLine("Enemy:");
+        enemy.ShowInfo();
     }
 }

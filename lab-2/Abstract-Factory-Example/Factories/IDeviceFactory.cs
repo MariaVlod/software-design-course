@@ -1,4 +1,5 @@
 ﻿using Abstract_Factory_Example.Devices;
+using Abstract_Factory_Example.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Abstract_Factory_Example.Factories
 {
     public interface IDeviceFactory
     {
-        Laptop CreateLaptop();
-        Netbook CreateNetbook();
-        EBook CreateEBook();
-        Smartphone CreateSmartphone();
+        ILaptop CreateLaptop();
+        INetBook CreateNetbook();
+        IEBook CreateEBook();
+        ISmartPhone CreateSmartphone();
     }
 }

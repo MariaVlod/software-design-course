@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Factory_method_pattern
 {
-    public class DomesticSubscription : Subscription
+    public class DomesticSubscription : ISubscription
     {
-        public DomesticSubscription()
-        {
-            MonthlyFee = 9.99m;
-            MinimumPeriod = 1;
-            Channels = new List<string> { "Channel A", "Channel B", "Channel C" };
-        }
+        public decimal MonthlyFee => 10m;
+        public int MinPeriod => 1;
+        public List<string> Channels => new() { "News", "Entertainment", "Sports" };
+        public List<string> Features => new() { "Basic Support", "HD Quality" };
     }
 }

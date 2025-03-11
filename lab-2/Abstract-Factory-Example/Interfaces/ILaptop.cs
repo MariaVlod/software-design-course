@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abstract_Factory_Example.Devices
+namespace Abstract_Factory_Example.Interfaces
 {
-    public interface IDevice
+    public interface ILaptop
     {
         void DisplayInfo();
     }

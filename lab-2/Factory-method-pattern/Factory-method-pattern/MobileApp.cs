@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Factory_method_pattern
 {
-    public class MobileApp : ISubscriptionFactory
+    public class MobileApp : SubscriptionCreator
     {
-        public Subscription CreateSubscription()
-        {
-            return new PremiumSubscription();
-        }
+        public override ISubscription CreateSubscription() => new EducationalSubscription();
     }
 }

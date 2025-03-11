@@ -1,4 +1,6 @@
 ﻿using Abstract_Factory_Example.Devices;
+using Abstract_Factory_Example.Devices.Balaxy;
+using Abstract_Factory_Example.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +11,9 @@ namespace Abstract_Factory_Example.Factories
 {
     public class BalaxyFactory : IDeviceFactory
     {
-        public Laptop CreateLaptop()
-        {
-            return new Laptop("Balaxy");
-        }
-
-        public Netbook CreateNetbook()
-        {
-            return new Netbook("Balaxy");
-        }
-
-        public EBook CreateEBook()
-        {
-            return new EBook("Balaxy");
-        }
-
-        public Smartphone CreateSmartphone()
-        {
-            return new Smartphone("Balaxy");
-        }
+        public ILaptop CreateLaptop() => new BalaxyLaptop();
+        public INetBook CreateNetbook() => new BalaxyNetbook();
+        public IEBook CreateEBook() => new BalaxyEBook();
+        public ISmartPhone CreateSmartphone() => new BalaxySmartphone();
     }
 }

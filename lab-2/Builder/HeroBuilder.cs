@@ -8,53 +8,25 @@ namespace Builder
 {
     public class HeroBuilder : ICharacterBuilder
     {
-        private Hero _hero = new Hero();
+        private Character _character = new Character();
 
-        public ICharacterBuilder SetHeight(int height)
-        {
-            _hero.Height = height;
-            return this;
-        }
+        public HeroBuilder() => Reset();
 
-        public ICharacterBuilder SetBuild(string build)
-        {
-            _hero.Build = build;
-            return this;
-        }
+        public void Reset() => _character = new Character();
+        public ICharacterBuilder SetName(string name) { _character.Name = name; return this; }
+        public ICharacterBuilder SetHeight(int height) { _character.Height = height; return this; }
+        public ICharacterBuilder SetBuild(string build) { _character.Build = build; return this; }
+        public ICharacterBuilder SetHairColor(string color) { _character.HairColor = color; return this; }
+        public ICharacterBuilder SetEyeColor(string color) { _character.EyeColor = color; return this; }
+        public ICharacterBuilder SetClothing(string clothing) { _character.Clothing = clothing; return this; }
+        public ICharacterBuilder AddToInventory(string item) { _character.Inventory.Add(item); return this; }
+        public ICharacterBuilder AddDeed(string deed) { _character.Deeds.Add(deed); return this; }
 
-        public ICharacterBuilder SetHairColor(string hairColor)
+        public Character Build()
         {
-            _hero.HairColor = hairColor;
-            return this;
-        }
-
-        public ICharacterBuilder SetEyeColor(string eyeColor)
-        {
-            _hero.EyeColor = eyeColor;
-            return this;
-        }
-
-        public ICharacterBuilder SetClothing(string clothing)
-        {
-            _hero.Clothing = clothing;
-            return this;
-        }
-
-        public ICharacterBuilder AddToInventory(string item)
-        {
-            _hero.Inventory.Add(item);
-            return this;
-        }
-
-        public ICharacterBuilder AddDeed(string deed)
-        {
-            _hero.GoodDeeds.Add(deed);
-            return this;
-        }
-
-        public object Build()
-        {
-            return _hero;
+            Character result = _character;
+            Reset();
+            return result;
         }
 
     }

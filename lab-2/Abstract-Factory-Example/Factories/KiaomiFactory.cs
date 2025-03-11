@@ -1,4 +1,6 @@
 ﻿using Abstract_Factory_Example.Devices;
+using Abstract_Factory_Example.Devices.Kiaomi;
+using Abstract_Factory_Example.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +11,9 @@ namespace Abstract_Factory_Example.Factories
 {
     public class KiaomiFactory : IDeviceFactory
     {
-        public Laptop CreateLaptop()
-        {
-            return new Laptop("Kiaomi");
-        }
-
-        public Netbook CreateNetbook()
-        {
-            return new Netbook("Kiaomi");
-        }
-
-        public EBook CreateEBook()
-        {
-            return new EBook("Kiaomi");
-        }
-
-        public Smartphone CreateSmartphone()
-        {
-            return new Smartphone("Kiaomi");
-        }
+        public ILaptop CreateLaptop() => new KiaomiLaptop();
+        public INetBook CreateNetbook() => new KiaomiNetbook();
+        public IEBook CreateEBook() => new KiaomiEBook();
+        public ISmartPhone CreateSmartphone() => new KiaomiSmartphone();
     }
 }

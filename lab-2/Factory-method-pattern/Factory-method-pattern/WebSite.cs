@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace Factory_method_pattern
 {
-    public class WebSite : ISubscriptionFactory
+    public class WebSite : SubscriptionCreator
     {
-        public Subscription CreateSubscription()
-        {
-           
-            return new DomesticSubscription();
-        }
+        public override ISubscription CreateSubscription() => new DomesticSubscription();
     }
 }

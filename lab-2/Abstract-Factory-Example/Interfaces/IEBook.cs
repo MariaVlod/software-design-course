@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Factory_method_pattern
+namespace Abstract_Factory_Example.Interfaces
 {
-    public interface ISubscriptionFactory
+    public interface IEBook
     {
-        Subscription CreateSubscription();
+        void DisplayInfo();
     }
 }

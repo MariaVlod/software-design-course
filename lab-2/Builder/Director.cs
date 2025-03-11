@@ -15,14 +15,15 @@ namespace Builder
             _builder = builder;
         }
 
-        public void ChangeBuilder(ICharacterBuilder builder)
+        public void SetBuilder(ICharacterBuilder builder)
         {
             _builder = builder;
         }
 
-        public object CreateCharacter()
+        public Character CreateCharacter()
         {
             return _builder
+                .SetName("Legolas")
                 .SetHeight(180)
                 .SetBuild("Slim")
                 .SetHairColor("Blonde")
@@ -38,9 +39,10 @@ namespace Builder
                 .Build();
         }
 
-        public object CreateEvilCharacter()
+        public Character CreateEvilCharacter()
         {
             return _builder
+                .SetName("Negan")
                 .SetHeight(185)
                 .SetBuild("Muscular")
                 .SetHairColor("Black")

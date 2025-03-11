@@ -8,13 +8,14 @@ namespace Builder
 {
     public interface ICharacterBuilder
     {
+        ICharacterBuilder SetName(string name);
         ICharacterBuilder SetHeight(int height);
         ICharacterBuilder SetBuild(string build);
-        ICharacterBuilder SetHairColor(string hairColor);
-        ICharacterBuilder SetEyeColor(string eyeColor);
+        ICharacterBuilder SetHairColor(string color);
+        ICharacterBuilder SetEyeColor(string color);
         ICharacterBuilder SetClothing(string clothing);
         ICharacterBuilder AddToInventory(string item);
         ICharacterBuilder AddDeed(string deed);
-        object Build();
+        Character Build();
     }
 }
