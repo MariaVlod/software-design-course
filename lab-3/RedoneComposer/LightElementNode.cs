@@ -14,6 +14,8 @@ namespace RedoneComposer
         public List<string> CssClassList { get; set; } = new List<string>();
         public List<LightNode> ChildNodes { get; set; } = new List<LightNode>();
 
+        private EventManager _eventManager = new EventManager();
+
         public LightElementNode(string tagName, string displayType, bool isSelfClosing)
         {
             TagName = tagName;
@@ -59,6 +61,21 @@ namespace RedoneComposer
             }
 
             return innerContent;
+        }
+
+        public void AddEventListener(string eventType, Action<LightElementNode> callback)
+        {
+            _eventManager.Subscribe(eventType, callback);
+        }
+
+        public void RemoveEventListener(string eventType, Action<LightElementNode> callback)
+        {
+            _eventManager.Unsubscribe(eventType, callback);
+        }
+
+        public void TriggerEvent(string eventType)
+        {
+            _eventManager.Notify(eventType, this);
         }
     }
 }

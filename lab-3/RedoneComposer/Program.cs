@@ -25,8 +25,20 @@ public class Program
         list.AddChild(listItem2);
         list.AddChild(listItem3);
 
+        listItem1.AddEventListener("click", (element) => {
+            Console.WriteLine($"Клікнуто на елемент списку: {element.InnerHTML()}");
+        });
+
+        listItem2.AddEventListener("click", (element) => {
+            Console.WriteLine($"Клікнуто на другому пункті списку!");
+        });
+
         var table = new LightElementNode("table", "block", false);
         table.CssClassList.Add("data-table");
+
+        table.AddEventListener("mouseover", (element) => {
+            Console.WriteLine("Курсор миші над таблицею!");
+        });
 
         var tableRowHeader = new LightElementNode("tr", "block", false);
         var th1 = new LightElementNode("th", "inline", false);
@@ -61,5 +73,10 @@ public class Program
         rootDiv.AddChild(table);
 
         Console.WriteLine(rootDiv.OuterHTML());
+
+        Console.WriteLine("\nСимуляція подій:");
+        listItem1.TriggerEvent("click");
+        listItem2.TriggerEvent("click");
+        table.TriggerEvent("mouseover");
     }
 }
