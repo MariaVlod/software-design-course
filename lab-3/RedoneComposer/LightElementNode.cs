@@ -78,6 +78,15 @@ namespace RedoneComposer
         }
 
 
+        public IDOMIterator GetDepthFirstIterator()
+        {
+            return new DepthFirstIterator(this);
+        }
+
+        public IDOMIterator GetBreadthFirstIterator()
+        {
+            return new BreadthFirstIterator(this);
+        }
 
         public override string OuterHTML()
         {

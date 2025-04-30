@@ -1,6 +1,5 @@
 ﻿using RedoneComposer;
 using System;
-using System.Collections.Generic;
 
 public class Program
 {
@@ -135,5 +134,58 @@ public class Program
 
         Console.WriteLine("\nКінцевий HTML:");
         Console.WriteLine(rootDiv2.OuterHTML());
+
+        Console.WriteLine("\nДемонстрація роботи ітераторів:");
+        Console.WriteLine("--------------------------------");
+
+        Console.WriteLine("\nОбхід DOM в глибину (Depth-First):");
+        var depthIterator = rootDiv.GetDepthFirstIterator();
+
+        while (depthIterator.HasNext())
+        {
+            var node = depthIterator.Next();
+            var level = depthIterator.CurrentLevel;
+
+            if (node is LightElementNode elementNode)
+            {
+                Console.WriteLine($"[Рівень {level}] Елемент: <{elementNode.TagName}>");
+            }
+            else if (node is LightTextNode textNode)
+            {
+                string escapedText = textNode.TextContent.Replace("'", "\\'");
+                Console.WriteLine($"[Рівень {level}] Текст: \"{escapedText}\"");
+            }
+        }
+
+        Console.WriteLine("\nОбхід DOM в ширину (Breadth-First) з правильними рівнями:");
+        var breadthIterator = rootDiv.GetBreadthFirstIterator();
+        string currentSection = "";
+
+        while (breadthIterator.HasNext())
+        {
+            var node = breadthIterator.Next();
+            var level = breadthIterator.CurrentLevel;  
+
+            if (node is LightElementNode elementNode)
+            {
+                if (elementNode.TagName == "table" && currentSection != "table")
+                {
+                    Console.WriteLine("\n--- Таблиця ---");
+                    currentSection = "table";
+                }
+                else if (elementNode.TagName == "ul" && currentSection != "list")
+                {
+                    Console.WriteLine("\n--- Список ---");
+                    currentSection = "list";
+                }
+
+                Console.WriteLine($"[Рівень {level}] Елемент: <{elementNode.TagName}>");
+            }
+            else if (node is LightTextNode textNode)
+            {
+                string escapedText = textNode.TextContent.Replace("'", "\\'");
+                Console.WriteLine($"[Рівень {level}] Текст: \"{escapedText}\"");
+            }
+        }
     }
 }
