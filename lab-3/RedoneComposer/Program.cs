@@ -164,7 +164,7 @@ public class Program
         while (breadthIterator.HasNext())
         {
             var node = breadthIterator.Next();
-            var level = breadthIterator.CurrentLevel;  
+            var level = breadthIterator.CurrentLevel;
 
             if (node is LightElementNode elementNode)
             {
