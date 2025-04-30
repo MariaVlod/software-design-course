@@ -98,6 +98,16 @@ namespace RedoneComposer
             return new BreadthFirstIterator(this);
         }
 
+        internal override void Accept(INodeVisitor visitor)
+        {
+            visitor.VisitElement(this);
+            foreach (var child in ChildNodes)
+            {
+                child.Accept(visitor);
+            }
+        }
+
+
         public override string OuterHTML()
         {
             string htmlOutput = $"<{TagName}";

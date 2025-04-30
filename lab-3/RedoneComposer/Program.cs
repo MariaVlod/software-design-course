@@ -252,5 +252,49 @@ public class Program
         Console.WriteLine("\nПовертаємо в стан 'видимий':");
         cleanStateDiv.SetState(new VisibleState());
         Console.WriteLine(cleanStateDiv.OuterHTML());
+
+
+
+        Console.WriteLine("\nДемонстрація шаблону Відвідувач:");
+        Console.WriteLine("--------------------------------");
+
+        // Використовуємо вже створене rootDiv дерево
+        Console.WriteLine("\n1. Підрахунок елементів:");
+        var counter = new ElementCounterVisitor();
+        rootDiv.Accept(counter);
+        Console.WriteLine($"Знайдено елементів: {counter.ElementCount}");
+        Console.WriteLine($"Знайдено текстових вузлів: {counter.TextCount}");
+
+        Console.WriteLine("\n2. Збір CSS класів:");
+        var classCollector = new ClassCollectorVisitor();
+        rootDiv.Accept(classCollector);
+        Console.WriteLine("Використані CSS класи:");
+        foreach (var cssClass in classCollector.Classes)
+        {
+            Console.WriteLine($"- {cssClass}");
+        }
+
+        Console.WriteLine("\n3. Спеціальний рендеринг через Visitor:");
+        var renderer = new NodeRendererVisitor();
+        rootDiv.Accept(renderer);
+        Console.WriteLine(renderer.Output.ToString());
+        Console.WriteLine("\nДемонстрація обробки зображень через Visitor:");
+
+        var imageContainer = new LightElementNode("div", "block", false);
+        imageContainer.AddChild(new LightImageNode("images/photo.jpg"));
+        imageContainer.AddChild(new LightImageNode("http://example.com/image.png"));
+
+        
+        var imageCounter = new ElementCounterVisitor();
+        imageContainer.Accept(imageCounter);
+        Console.WriteLine($"Знайдено елементів: {imageCounter.ElementCount}");
+        Console.WriteLine($"Знайдено текстових вузлів: {imageCounter.TextCount}");
+        Console.WriteLine($"Знайдено зображень: {imageCounter.ImageCount}");
+
+        
+        var imageRenderer = new NodeRendererVisitor();
+        imageContainer.Accept(imageRenderer);
+        Console.WriteLine(imageRenderer.Output.ToString());
+
     }
 }
