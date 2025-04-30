@@ -26,7 +26,58 @@ namespace RedoneComposer
         public void AddChild(LightNode childNode)
         {
             ChildNodes.Add(childNode);
+            if (childNode is LightElementNode elementNode)
+            {
+                elementNode.OnInserted();
+            }
         }
+
+        public void RemoveChild(LightNode childNode)
+        {
+            if (ChildNodes.Remove(childNode) && childNode is LightElementNode elementNode)
+            {
+                elementNode.OnRemoved();
+            }
+        }
+
+
+        protected override void OnCreated()
+        {
+            Console.WriteLine($"Елемент {TagName} був створений");
+        }
+
+        protected override void OnInserted()
+        {
+            Console.WriteLine($"Елемент {TagName} був доданий до DOM");
+        }
+
+        protected override void OnRemoved()
+        {
+            Console.WriteLine($"Елемент {TagName} був видалений з DOM");
+        }
+
+        protected override void OnStylesApplied()
+        {
+            if (CssClassList.Count > 0)
+            {
+                Console.WriteLine($"Стилі були застосовані до елементу {TagName}");
+            }
+        }
+
+        protected override void OnClassListApplied()
+        {
+            if (CssClassList.Count > 0)
+            {
+                Console.WriteLine($"Класи CSS були застосовані до елементу {TagName}");
+            }
+        }
+
+        protected override void OnRendered()
+        {
+            Console.WriteLine($"Елемент {TagName} був відрендерений");
+        }
+
+
 
         public override string OuterHTML()
         {

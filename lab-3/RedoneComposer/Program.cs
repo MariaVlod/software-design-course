@@ -79,8 +79,6 @@ public class Program
         listItem2.TriggerEvent("click");
         table.TriggerEvent("mouseover");
 
-
-
         var localImage = new LightImageNode("images/photo.jpg");
         var webImage1 = new LightImageNode("http://example.com/image.png");
         var webImage2 = new LightImageNode("https://example.com/pic.jpg");
@@ -102,5 +100,40 @@ public class Program
         Console.WriteLine(webImage2.OuterHTML());
         webImage2.LoadImage();
         Console.WriteLine(webImage2.GetLoadingInfo());
+
+        Console.WriteLine("Демонстрація життєвого циклу елементів:");
+        Console.WriteLine("--------------------------------------");
+
+        var rootDiv2 = new LightElementNode("div", "block", false);
+        rootDiv2.CssClassList.Add("main-container");
+
+        var heading2 = new LightElementNode("h2", "block", false);
+        heading2.AddChild(new LightTextNode("Життєвий цикл елементів"));
+
+        var paragraph = new LightElementNode("p", "block", false);
+        paragraph.CssClassList.Add("description");
+        paragraph.AddChild(new LightTextNode("Це демонстрація хуків життєвого циклу."));
+
+        var list2 = new LightElementNode("ul", "block", false);
+        var listItem1_2 = new LightElementNode("li", "block", false);
+        listItem1_2.AddChild(new LightTextNode("Перший пункт"));
+        var listItem2_2 = new LightElementNode("li", "block", false);
+        listItem2_2.AddChild(new LightTextNode("Другий пункт"));
+
+        rootDiv2.AddChild(heading2);
+        rootDiv2.AddChild(paragraph);
+        rootDiv2.AddChild(list2);
+
+        list2.AddChild(listItem1_2);
+        list2.AddChild(listItem2_2);
+
+        Console.WriteLine("\nВивід HTML:");
+        Console.WriteLine(rootDiv2.Render());
+
+        Console.WriteLine("\nВидалення елемента:");
+        list2.RemoveChild(listItem2_2);
+
+        Console.WriteLine("\nКінцевий HTML:");
+        Console.WriteLine(rootDiv2.OuterHTML());
     }
 }

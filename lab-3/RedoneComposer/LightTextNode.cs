@@ -15,8 +15,19 @@ namespace RedoneComposer
             TextContent = text;
         }
 
+        protected override void OnCreated()
+        {
+            Console.WriteLine("Текстовий вузол був створений");
+        }
+
+        protected override void OnTextRendered()
+        {
+            Console.WriteLine($"Текст '{TextContent}' був відрендерений");
+        }
+
         public override string OuterHTML()
         {
+            OnTextRendered();
             return TextContent;
         }
 
