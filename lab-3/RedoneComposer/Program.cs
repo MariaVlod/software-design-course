@@ -230,5 +230,27 @@ public class Program
         commandHistory.Undo();
         Console.WriteLine("\nПісля Undo (повернення заголовка):");
         Console.WriteLine(demoDiv.OuterHTML());
+
+        Console.WriteLine("\nДемонстрація шаблону Стейт (Очищена версія):");
+        Console.WriteLine("-------------------------------------------");
+
+        var cleanStateDiv = new LightElementNode("div", "block", false);
+        cleanStateDiv.AddChild(new LightTextNode("Чиста демонстрація станів"));
+
+        Console.WriteLine("\nПочатковий стан:");
+        Console.WriteLine($"Стан: {cleanStateDiv.GetCurrentState()}");
+        Console.WriteLine(cleanStateDiv.OuterHTML());
+
+        Console.WriteLine("\nПереводимо в стан 'виділено':");
+        cleanStateDiv.SetState(new HighlightedState());
+        Console.WriteLine(cleanStateDiv.OuterHTML());
+
+        Console.WriteLine("\nПереводимо в стан 'сховано':");
+        cleanStateDiv.SetState(new HiddenState());
+        Console.WriteLine(cleanStateDiv.OuterHTML());
+
+        Console.WriteLine("\nПовертаємо в стан 'видимий':");
+        cleanStateDiv.SetState(new VisibleState());
+        Console.WriteLine(cleanStateDiv.OuterHTML());
     }
 }

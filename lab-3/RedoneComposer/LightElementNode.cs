@@ -8,6 +8,7 @@ namespace RedoneComposer
 {
     internal class LightElementNode : LightNode
     {
+        private INodeState _currentState;
         public string TagName { get; set; }
         public string DisplayType { get; set; }
         public bool IsSelfClosing { get; set; }
@@ -21,8 +22,17 @@ namespace RedoneComposer
             TagName = tagName;
             DisplayType = displayType;
             IsSelfClosing = isSelfClosing;
+            _currentState = new VisibleState(); // стан за замовчуванням
+
+        }
+        public void SetState(INodeState state)
+        {
+            _currentState = state;
+            _currentState.ApplyState(this);
+            Console.WriteLine($"Елемент {TagName} переведено в стан: {_currentState.GetStateName()}");
         }
 
+        public string GetCurrentState() => _currentState.GetStateName();
         public void AddChild(LightNode childNode)
         {
             ChildNodes.Add(childNode);
