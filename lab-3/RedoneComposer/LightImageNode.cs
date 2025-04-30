@@ -48,5 +48,10 @@ namespace RedoneComposer
         {
             return string.Empty;
         }
+
+        internal override void Accept(INodeVisitor visitor)
+        {
+            visitor.VisitImage(this);  // Викликаємо відповідний метод відвідувача
+        }
     }
 }

@@ -10,6 +10,8 @@ namespace RedoneComposer
     {
         public abstract string OuterHTML();
         public abstract string InnerHTML();
+        internal abstract void Accept(INodeVisitor visitor);
+
 
         public string Render()
         {

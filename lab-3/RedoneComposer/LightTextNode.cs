@@ -24,6 +24,10 @@ namespace RedoneComposer
         {
             Console.WriteLine($"Текст '{TextContent}' був відрендерений");
         }
+        internal override void Accept(INodeVisitor visitor)
+        {
+            visitor.VisitText(this);
+        }
 
         public override string OuterHTML()
         {
