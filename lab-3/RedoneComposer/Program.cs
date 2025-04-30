@@ -187,5 +187,48 @@ public class Program
                 Console.WriteLine($"[Рівень {level}] Текст: \"{escapedText}\"");
             }
         }
+
+
+        Console.WriteLine("\nДемонстрація шаблону Команда (Історія дій):");
+        Console.WriteLine("-----------------------------------------");
+
+        var commandHistory = new CommandHistory();
+        var demoDiv = new LightElementNode("div", "block", false);
+
+        Console.WriteLine("\nПочатковий HTML:");
+        Console.WriteLine(demoDiv.OuterHTML());
+
+        var heading4 = new LightElementNode("h1", "block", false);
+        var addHeadingCommand = new AddChildCommand(demoDiv, heading4);
+        commandHistory.ExecuteCommand(addHeadingCommand);
+
+        Console.WriteLine("\nПісля додавання заголовка:");
+        Console.WriteLine(demoDiv.OuterHTML());
+
+        var textNode4 = new LightTextNode("Демонстрація команди");
+        var addTextCommand = new AddChildCommand(heading4, textNode4);
+        commandHistory.ExecuteCommand(addTextCommand);
+
+        Console.WriteLine("\nПісля додавання тексту:");
+        Console.WriteLine(demoDiv.OuterHTML());
+
+        commandHistory.Undo();
+        Console.WriteLine("\nПісля Undo (видалення тексту):");
+        Console.WriteLine(demoDiv.OuterHTML());
+
+
+        commandHistory.Redo();
+        Console.WriteLine("\nПісля Redo (повторне додавання тексту):");
+        Console.WriteLine(demoDiv.OuterHTML());
+
+        var removeHeadingCommand = new RemoveChildCommand(demoDiv, heading4);
+        commandHistory.ExecuteCommand(removeHeadingCommand);
+
+        Console.WriteLine("\nПісля видалення заголовка:");
+        Console.WriteLine(demoDiv.OuterHTML());
+
+        commandHistory.Undo();
+        Console.WriteLine("\nПісля Undo (повернення заголовка):");
+        Console.WriteLine(demoDiv.OuterHTML());
     }
 }
