@@ -258,7 +258,7 @@ public class Program
         Console.WriteLine("\nДемонстрація шаблону Відвідувач:");
         Console.WriteLine("--------------------------------");
 
-        // Використовуємо вже створене rootDiv дерево
+       
         Console.WriteLine("\n1. Підрахунок елементів:");
         var counter = new ElementCounterVisitor();
         rootDiv.Accept(counter);
@@ -295,6 +295,30 @@ public class Program
         var imageRenderer = new NodeRendererVisitor();
         imageContainer.Accept(imageRenderer);
         Console.WriteLine(imageRenderer.Output.ToString());
+
+        Console.WriteLine("\nДемонстрація шаблону Макрокоманда:");
+        Console.WriteLine("---------------------------------");
+
+        var history = new CommandHistory();
+        var macroContainer = new LightElementNode("div", "block", false); 
+
+        var createTableMacro = new MacroCommand("Створити таблицю");
+
+        var macroTable = new LightElementNode("table", "block", false);
+        var headerRow = new LightElementNode("tr", "block", false);
+        var headerCell = new LightElementNode("th", "inline", false);
+        headerCell.AddChild(new LightTextNode("Колонка 1"));
+
+        createTableMacro.AddCommand(new AddChildCommand(headerRow, headerCell));
+        createTableMacro.AddCommand(new AddChildCommand(macroTable, headerRow)); 
+        createTableMacro.AddCommand(new AddChildCommand(macroContainer, macroTable)); 
+
+        history.ExecuteCommand(createTableMacro);
+
+        Console.WriteLine("\nРезультат після створення таблиці:");
+        Console.WriteLine(macroContainer.OuterHTML()); 
+
+ 
 
     }
 }
