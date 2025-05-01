@@ -316,9 +316,61 @@ public class Program
         history.ExecuteCommand(createTableMacro);
 
         Console.WriteLine("\nРезультат після створення таблиці:");
-        Console.WriteLine(macroContainer.OuterHTML()); 
+        Console.WriteLine(macroContainer.OuterHTML());
 
- 
+
+
+
+
+
+
+        
+        Console.WriteLine("\nДемонстрація валідації HTML:");
+        Console.WriteLine("---------------------------");
+
+        
+        var invalidHtml = new LightElementNode("div", "block", false);
+        invalidHtml.AddChild(new LightElementNode("li", "block", false)); 
+        invalidHtml.AddChild(new LightElementNode("table", "block", false));
+        invalidHtml.AddChild(new LightElementNode("td", "inline", false)); 
+        
+        var validHtml = new LightElementNode("div", "block", false);
+        var validList = new LightElementNode("ul", "block", false);
+        validList.AddChild(new LightElementNode("li", "block", false));
+        validHtml.AddChild(validList);
+
+        var validTable = new LightElementNode("table", "block", false);
+        var validRow = new LightElementNode("tr", "block", false);
+        validRow.AddChild(new LightElementNode("th", "inline", false));
+        validTable.AddChild(validRow);
+        validHtml.AddChild(validTable);
+
+        var validator = new HtmlValidationVisitor();
+        invalidHtml.Accept(validator);
+        validator.AfterVisit();
+
+        Console.WriteLine("\nРезультати валідації (з помилками):");
+        foreach (var error in validator.Errors)
+        {
+            Console.WriteLine($"- {error}");
+        }
+
+        validator = new HtmlValidationVisitor();
+        validHtml.Accept(validator);
+        validator.AfterVisit();
+
+        Console.WriteLine("\nРезультати валідації (коректний HTML):");
+        if (validator.Errors.Count == 0)
+        {
+            Console.WriteLine("- HTML валідний, помилок не знайдено");
+        }
+        else
+        {
+            foreach (var error in validator.Errors)
+            {
+                Console.WriteLine($"- {error}");
+            }
+        }
 
     }
 }
